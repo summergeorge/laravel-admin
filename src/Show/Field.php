@@ -2,6 +2,7 @@
 
 namespace Encore\Admin\Show;
 
+use App\Models\Media\MediaInfoModel;
 use Encore\Admin\Show;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Renderable;
@@ -282,7 +283,7 @@ HTML;
      */
     public function attach($width = 200, $height = 200)
     {
-        return $this->unescape(function ($value) use ($width, $height) {
+        return $this->unescape()->as(function ($value) use ($width, $height) {
 //            array:1 [▼
 //              "datas" => array:8 [▼
 //                   0 => array:3 [▼
