@@ -280,8 +280,9 @@ HTML;
      * @param int $height
      * @return Field
      */
-    public function attach($width = 200, $height = 200){
-        return $this->unescape(function ($value) use ($width,$height){
+    public function attach($width = 200, $height = 200)
+    {
+        return $this->unescape(function ($value) use ($width, $height) {
 //            array:1 [▼
 //              "datas" => array:8 [▼
 //                   0 => array:3 [▼
@@ -289,10 +290,9 @@ HTML;
 //                       "file_name" => "屏幕快照 2018-09-15 下午3.17.03.png"
 //                      "thumbnail_url" => "/admin/file/small/647"
 //    ]
-            $data = json_decode($value,true);
+            $data = json_decode($value, true);
 //            dd($data);
 //            $src = $data['datas'][0]['thumbnail_url'];
-
 
 
             $html = <<<HTML
@@ -300,13 +300,13 @@ HTML;
             <div class="uploaded-list">
 HTML;
 
-            foreach ($data['datas'] as $key => $item){
+            foreach ($data['datas'] as $key => $item) {
                 $id = $item['id'];
                 $file_name = $item['file_name'];
                 $url = $item['thumbnail_url'];
-                $media_info = MediaInfoModel::where('media_id',$id)->count();
+                $media_info = MediaInfoModel::where('media_id', $id)->count();
 //                dd($media_info);
-                if($media_info > 0){
+                if ($media_info > 0) {
                     $html .= <<<HTML
                         <div class="item" data-id="$id" data-name="$file_name" data-url="$url"><img src="$url">$file_name<span class="close">x</span></div>
 
@@ -324,6 +324,7 @@ HTML;
 
             return $html;
         });
+    }
 
     /**
      * Show field as a link.
